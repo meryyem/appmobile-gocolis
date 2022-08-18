@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GoColis</string>
+    <string name="facebook_app_id">397135985671311</string>
+    <string name="fb_login_protocol_scheme">fb397135985671311</string>
+    <string name="facebook_client_token">16ad631da55a24d4b02e68fbfb137db7</string>
+
+</resources>

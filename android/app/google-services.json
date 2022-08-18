@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "587001974598",
+    "project_id": "gocolis-2709e",
+    "storage_bucket": "gocolis-2709e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587001974598:android:1f12ba0a737feedab35f47",
+        "android_client_info": {
+          "package_name": "com.example.gocolis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587001974598-kvscklcag31rpgva4rppogarfmrkdhpn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gocolis",
+            "certificate_hash": "7d0065a3246151e467e4463a2ba5659ffc8f6a82"
+          }
+        },
+        {
+          "client_id": "587001974598-hu8oams7fu52chnoqai1prdu9iaa18p3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABlGD-ZUw74vkMV58hQAQZRGK1H1PC2Jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587001974598-hu8oams7fu52chnoqai1prdu9iaa18p3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
