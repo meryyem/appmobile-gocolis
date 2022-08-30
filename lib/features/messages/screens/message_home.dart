@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gocolis/constants/colors.dart';
+import 'package:gocolis/features/messages/screens/camera_page.dart';
+import 'package:gocolis/features/messages/screens/chat_page.dart';
+import 'package:gocolis/features/messages/screens/status_page.dart';
+import 'package:gocolis/models/chat.dart';
 
 class MessageHome extends StatefulWidget {
-  const MessageHome({Key? key}) : super(key: key);
+  final List<Chat> chats;
+  final Chat sourceChat;
+  final Function onImageSend;
+  const MessageHome({Key? key, required this.chats, required this.sourceChat, required this.onImageSend})
+      : super(key: key);
 
   @override
   State<MessageHome> createState() => _MessageHomeState();
@@ -36,44 +44,61 @@ class _MessageHomeState extends State<MessageHome>
               color: Colors.white),
           /*IconButton(
               icon: Icon(Icons.more_vert), onPressed: null, color: Colors.white)*/
-          PopupMenuButton<String>(
-            onSelected: (value) {
-              print(value);
-            },
-            itemBuilder: (BuildContext context) {
-              return [
-                const PopupMenuItem(child: Text("New group"), value: "New group"),
-                const PopupMenuItem(child: Text("New broadcast"), value: "New broadcast"),
-                const PopupMenuItem(child: Text("Whatsapp web"), value: "Whatsapp web"),
-                const PopupMenuItem(child: Text("Starred messages"), value: "Starred messages"),
-                const PopupMenuItem(child: Text("Settings"), value: "Settings"),
-              ];
+          PopupMenuButton<String>(onSelected: (value) {
+            print(value);
+          }, itemBuilder: (BuildContext context) {
+            return [
+              const PopupMenuItem(
+                value: "New group",
+                child: Text("New group"),
+              ),
+              const PopupMenuItem(
+                value: "New broadcast",
+                child: Text("New broadcast"),
+              ),
+              const PopupMenuItem(
+                value: "Whatsapp web",
+                child: Text("Whatsapp web"),
+              ),
+              const PopupMenuItem(
+                value: "Starred messages",
+                child: Text("Starred messages"),
+              ),
+              const PopupMenuItem(
+                value: "Settings",
+                child: Text("Settings"),
+              ),
+            ];
           })
         ],
         bottom: TabBar(
           controller: _controller,
+          indicatorColor: kPrimaryColor,
           tabs: const [
             Tab(
               icon: Icon(Icons.camera_alt),
             ),
             Tab(
-              text: "Chats",
+              text: "CHATS",
             ),
             Tab(
-              text: "Status",
+              text: "STATUS",
             ),
             Tab(
-              text: "Calls",
+              text: "CALLS",
             ),
           ],
         ),
       ),
       body: TabBarView(
         controller: _controller,
-        children: const [
-          Text("Camera"),
-          Text("Chats"),
-          Text("Status"),
+        children: [
+          CameraPage(onImageSend: widget.onImageSend,),
+          ChatPage(
+            chats: widget.chats,
+            sourceChat: widget.sourceChat,
+          ),
+          StatusPage(),
           Text("Calls"),
         ],
       ),

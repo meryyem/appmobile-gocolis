@@ -37,6 +37,13 @@
             {
               "client_id": "587001974598-hu8oams7fu52chnoqai1prdu9iaa18p3.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "587001974598-tlr146ic9jr9gd6oj4msq0r1f23nhtff.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gocolis"
+              }
             }
           ]
         }

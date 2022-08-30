@@ -1,3 +1,5 @@
+import 'package:camera/camera.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gocolis/common/widgets/bottom_bar.dart';
 import 'package:gocolis/constants/colors.dart';
@@ -14,15 +16,24 @@ import 'package:gocolis/features/auth/sender/services/social_login_controller.da
 import 'package:gocolis/features/auth/traveler/screens/traveler_home.dart';
 import 'package:gocolis/features/auth/traveler/screens/traverler_login_screen.dart';
 import 'package:gocolis/features/auth/traveler/services/traveler_services.dart';
+import 'package:gocolis/features/messages/screens/camera_screen.dart';
+import 'package:gocolis/features/messages/screens/chat_login_screen.dart';
+import 'package:gocolis/features/messages/screens/chat_page.dart';
 import 'package:gocolis/features/messages/screens/message_home.dart';
+import 'package:gocolis/features/messages/services/phone_service.dart';
 import 'package:gocolis/features/profile/screens/main_profile.dart';
 import 'package:gocolis/features/profile/screens/profile_screen.dart';
 import 'package:gocolis/providers/user_provider.dart';
 import 'package:gocolis/router.dart';
 import 'package:provider/provider.dart';
 
+import 'features/messages/screens/landing_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //firebase.initializeApp(config);
+  await Firebase.initializeApp();
+  cameras = await availableCameras();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => UserProvider(),
@@ -57,6 +68,7 @@ class _MyAppState extends State<MyApp> {
   final AuthService authService = AuthService();
   final SenderServices senderServices = SenderServices();
   final TravelerServices travelerServices = TravelerServices();
+  final PhoneService phoneService = PhoneService();
   //whenever i run initState fctn, i get the user data
   @override
   void initState() {
@@ -68,7 +80,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 //google-sign-in ----------------------------------------------------
- /*   return MultiProvider(providers: [
+    /*   return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => GoogleSignINController(),
         child: GoogleLogin(),
@@ -87,7 +99,7 @@ class _MyAppState extends State<MyApp> {
   }
 } */
 //-------------------------------------------------------------------------------------------------------------------------------
-    
+
     //INJECT MAP CONTROLLER
     //Get.lazyPut(() => ImageController());
     return MaterialApp(
@@ -97,6 +109,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: Colors.white,
         scaffoldBackgroundColor: backgroundColor,
+        fontFamily: "OpenSans",
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
       /*home: Provider.of<UserProvider>(context).user.token.isNotEmpty
@@ -127,7 +140,7 @@ class _MyAppState extends State<MyApp> {
           : const BottomBar()
         : const TravelerLoginScreen(),*/
 
-      home: MessageHome(),
+      home: LandingScreen(),
     );
   }
 }
